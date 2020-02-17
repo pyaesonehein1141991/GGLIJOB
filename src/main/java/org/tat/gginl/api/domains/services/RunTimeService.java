@@ -1,5 +1,6 @@
 package org.tat.gginl.api.domains.services;
 
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,10 @@ public class RunTimeService {
   @Transactional
   public void updateTime(TimeToSave runtime) {
     runTimeRepository.saveAndFlush(runtime);
+  }
+
+  public Date findRuntime() {
+    return runTimeRepository.findRuntime();
   }
 
 }
