@@ -3,6 +3,7 @@ package org.tat.gginl.api;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -147,8 +148,10 @@ public class GginlApiApplication implements CommandLineRunner {
     townshipCode.createAgentFolder();
     township.createSalePointFolder();
     statCode.createStatCodeFolder();
-    TimeToSave runtimes = runtimeservice.findbyId(1);
-    runtimes.setRuntime(new Date());
+    Optional<TimeToSave> runtimes = runtimeservice.findbyId("1");
+    if (runtimes.isPresent()) {
+      runtimes.get().setRuntime(new Date());
+    }
     runtimeservice.updateTime(runtimes);
 
     // shutdownApp();

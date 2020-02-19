@@ -1,6 +1,7 @@
 package org.tat.gginl.api.domains.services;
 
 import java.util.Date;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,13 +15,15 @@ public class RunTimeService {
   RunTimeRepository runTimeRepository;
 
   @Transactional
-  public TimeToSave findbyId(int id) {
-    return runTimeRepository.getOne(id);
+  public Optional<TimeToSave> findbyId(String id) {
+    return runTimeRepository.findById(id);
   }
 
   @Transactional
-  public void updateTime(TimeToSave runtime) {
-    runTimeRepository.saveAndFlush(runtime);
+  public void updateTime(Optional<TimeToSave> runtimes) {
+    if (runtimes.isPresent()) {
+      runTimeRepository.saveAndFlush(runtimes.get());
+    }
   }
 
   public Date findRuntime() {
