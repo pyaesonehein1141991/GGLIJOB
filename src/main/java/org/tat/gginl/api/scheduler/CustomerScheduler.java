@@ -36,18 +36,23 @@ public class CustomerScheduler {
   @Scheduled(cron = "0 */5 * ? * *")
   public void createCustomerFolder() throws Exception {
 
-    Date startDate = FileService.resetStartDate(new Date());
-    startDate = FileService.minusDays(startDate, 2);
-    Date endDate = FileService.resetEndDate(new Date());
+    /*
+     * Date startDate = FileService.resetStartDate(new Date()); startDate =
+     * FileService.minusDays(startDate, 2); Date endDate = FileService.resetEndDate(new Date());
+     */
 
 
-    List<Object> columnNameList = customerService.findAllColumnName();
-    List<Object[]> dataList = customerService.findAllNativeObject(startDate, endDate);
+
+    /*
+     * List<Object[]> dataList = customerService.findAllNativeObject(startDate, endDate);
+     */
+
 
 
     // RUNTIMEDATE
     Date query2 = runTimeService.findRuntime();
-    Date nowDate = new Date();
+    Date nowDate = FileService.resetEndDate(new Date());
+    List<Object> columnNameList = customerService.findAllColumnName();
     List<Object[]> dateList = customerService.findAllNativeObject1(query2, nowDate);
 
 
@@ -55,7 +60,7 @@ public class CustomerScheduler {
     // customerService.findByRecorderCreatedDateBetweenOrRecorderUpdatedDateBetween(startDate,
     // endDate);
 
-    if (dataList.size() > 0) {
+    if (dateList.size() > 0) {
 
       List<String> columnString =
           columnNameList.stream().map(String::valueOf).collect(Collectors.toList());
@@ -71,7 +76,7 @@ public class CustomerScheduler {
       columnString.add("[)~=_(]\r");
       CSVUtils.writeLine(writer, columnString, "[)!|;(]");
 
-      for (Object[] object : dataList) {
+      for (Object[] object : dateList) {
 
         List<String> stringList = Stream.of(object).map(value -> value == null ? "" : value)
             .map(String::valueOf).collect(Collectors.toList());
