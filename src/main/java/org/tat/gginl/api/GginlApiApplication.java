@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -41,120 +42,135 @@ import org.tat.gginl.api.scheduler.TowshipSchedular;
 @EnableScheduling
 public class GginlApiApplication implements CommandLineRunner {
 
-  @Autowired
-  private ApplicationContext context;
-  @Autowired
-  private UserService userService;
+	@Autowired
+	private ApplicationContext context;
 
-  @Autowired
-  private AgentScheduler agent;
-  @Autowired
-  private BankScheduler bank;
-  @Autowired
-  private BranchSchedular branch;
-  @Autowired
-  private CountryScheduler country;
-  @Autowired
-  private CustomerScheduler customer;
-  @Autowired
-  private GradeInfoScheduler grade;
-  @Autowired
-  private HospitalScheduler hospital;
-  @Autowired
-  private OccupationSchedular occupaton;
-  @Autowired
-  private OrganizationSchedular organization;
-  @Autowired
-  private PaymentTypeSchedular paymentType;
-  @Autowired
-  private ProductSchedular product;
-  @Autowired
-  private ProvinceScheular province;
-  @Autowired
-  private SaleManSchedular saleman;
-  @Autowired
-  private SalePointScheduler salepoint;
-  @Autowired
-  private TownShipCoeSchedular townshipCode;
-  @Autowired
-  private TowshipSchedular township;
-  @Autowired
-  private RelationShipSchedular relationship;
+	@Autowired
+	private UserService userService;
 
-  @Autowired
-  private RunTimeService runtimeservice;
+	@Autowired
+	private AgentScheduler agent;
 
-  @Autowired
-  private StatCodeScheduler statCode;
+	@Autowired
+	private BankScheduler bank;
 
-  public static void main(String[] args) {
-    SpringApplication.run(GginlApiApplication.class, args);
+	@Autowired
+	private BranchSchedular branch;
 
-    // SpringApplication application = new SpringApplication(GginlApiApplication.class);
-    // Properties properties = new Properties();
-    // properties.setProperty("spring.main.banner-mode", "log");
-    // properties.setProperty("logging.file", "C:/APILOG.log");
-    // properties.setProperty("logging.pattern.console", "");
-    // application.setDefaultProperties(properties);
-    // application.run(args);
+	@Autowired
+	private CountryScheduler country;
 
-  }
+	@Autowired
+	private CustomerScheduler customer;
 
-  @Bean
-  public ModelMapper modelMapper() {
-    return new ModelMapper();
-  }
+	@Autowired
+	private GradeInfoScheduler grade;
 
+	@Autowired
+	private HospitalScheduler hospital;
 
+	@Autowired
+	private OccupationSchedular occupaton;
 
-  public void shutdownApp() {
-    int exitCode = SpringApplication.exit(context, (ExitCodeGenerator) () -> 0);
-    System.exit(exitCode);
-  }
+	@Autowired
+	private OrganizationSchedular organization;
 
-  @Override
-  public void run(String... params) throws Exception {
-    SecurityUser admin = new SecurityUser();
-    admin.setUsername("admin");
-    admin.setPassword("admin");
-    admin.setEmail("admin@email.com");
-    admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
+	@Autowired
+	private PaymentTypeSchedular paymentType;
 
-    // userService.signup(admin);
+	@Autowired
+	private ProductSchedular product;
 
-    SecurityUser client = new SecurityUser();
-    client.setUsername("client");
-    client.setPassword("client");
-    client.setEmail("client@email.com");
-    client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT)));
+	@Autowired
+	private ProvinceScheular province;
 
-    // userService.signup(client);
+	@Autowired
+	private SaleManSchedular saleman;
 
-    agent.createAgentFolder();
-    bank.createBankFolder();
-    branch.createAgentFolder();
-    country.createBankFolder();
-    customer.createCustomerFolder();
-    grade.createGradeInfoFolder();
-    hospital.createHospitalFolder();
-    occupaton.createOccupationSFolder();
-    organization.createOrganizationFileFolder();
-    paymentType.createPaymentTypeFolder();
-    product.createProductFolder();
-    province.createProvienceFolder();
-    relationship.createRelationShipFolder();
-    saleman.createSaleManFolder();
-    salepoint.createSalePointFolder();
-    townshipCode.createAgentFolder();
-    township.createSalePointFolder();
-    statCode.createStatCodeFolder();
-    Optional<TimeToSave> runtimes = runtimeservice.findbyId("1");
-    if (runtimes.isPresent()) {
-      runtimes.get().setRuntime(new Date());
-    }
-    runtimeservice.updateTime(runtimes);
+	@Autowired
+	private SalePointScheduler salepoint;
 
-    // shutdownApp();
+	@Autowired
+	private TownShipCoeSchedular townshipCode;
 
-  }
+	@Autowired
+	private TowshipSchedular township;
+
+	@Autowired
+	private RelationShipSchedular relationship;
+
+	@Autowired
+	private RunTimeService runtimeservice;
+
+	@Autowired
+	private StatCodeScheduler statCode;
+
+	public static void main(String[] args) {
+		SpringApplication.run(GginlApiApplication.class, args);
+
+		// SpringApplication application = new SpringApplication(GginlApiApplication.class);
+		// Properties properties = new Properties();
+		// properties.setProperty("spring.main.banner-mode", "log");
+		// properties.setProperty("logging.file", "C:/APILOG.log");
+		// properties.setProperty("logging.pattern.console", "");
+		// application.setDefaultProperties(properties);
+		// application.run(args);
+
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+
+	public void shutdownApp() {
+		int exitCode = SpringApplication.exit(context, (ExitCodeGenerator) () -> 0);
+		System.exit(exitCode);
+	}
+
+	@Override
+	public void run(String... params) throws Exception {
+		SecurityUser admin = new SecurityUser();
+		admin.setUsername("admin");
+		admin.setPassword("admin");
+		admin.setEmail("admin@email.com");
+		admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
+
+		// userService.signup(admin);
+
+		SecurityUser client = new SecurityUser();
+		client.setUsername("client");
+		client.setPassword("client");
+		client.setEmail("client@email.com");
+		client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT)));
+
+		// userService.signup(client);
+
+		agent.createAgentFolder();
+		bank.createBankFolder();
+		branch.createAgentFolder();
+		country.createBankFolder();
+		customer.createCustomerFolder();
+		grade.createGradeInfoFolder();
+		hospital.createHospitalFolder();
+		occupaton.createOccupationSFolder();
+		organization.createOrganizationFileFolder();
+		paymentType.createPaymentTypeFolder();
+		product.createProductFolder();
+		province.createProvienceFolder();
+		relationship.createRelationShipFolder();
+		saleman.createSaleManFolder();
+		salepoint.createSalePointFolder();
+		townshipCode.createAgentFolder();
+		township.createSalePointFolder();
+		statCode.createStatCodeFolder();
+		Optional<TimeToSave> runtimes = runtimeservice.findbyId("1");
+		if (runtimes.isPresent()) {
+			runtimes.get().setRuntime(new Date());
+		}
+		runtimeservice.updateTime(runtimes);
+
+		// shutdownApp();
+
+	}
 }

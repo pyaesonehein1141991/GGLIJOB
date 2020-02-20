@@ -264,11 +264,13 @@ org\tat\gginl\api\common\ResidentAddress.class
 org\tat\gginl\api\domains\repository\IdGenRepositoryImpl.class
 org\tat\gginl\api\domains\services\ProductService.class
 org\tat\gginl\api\domains\repository\OrganizationRepository.class
+org\tat\gginl\api\domains\TimeToSave.class
 org\tat\gginl\api\common\emumdata\PassportType.class
 org\tat\gginl\api\scheduler\CountryScheduler.class
 org\tat\gginl\api\domains\services\GradeInfoService.class
 org\tat\gginl\api\domains\PolicyInsuredPersonHistory.class
 org\tat\gginl\api\common\emumdata\AgentCommissionEntryType.class
+org\tat\gginl\api\domains\services\RunTimeService.class
 org\tat\gginl\api\domains\services\LifeProposalService$1.class
 org\tat\gginl\api\common\emumdata\ClaimStatus.class
 org\tat\gginl\api\common\emumdata\InsuranceType.class
@@ -301,6 +303,7 @@ org\tat\gginl\api\common\UnitProcessor.class
 org\tat\gginl\api\domains\repository\PaymentTypeRepository.class
 org\tat\gginl\api\domains\services\OrganizationService.class
 org\tat\gginl\api\domains\repository\TLFRepository.class
+org\tat\gginl\api\domains\repository\RunTimeRepository.class
 org\tat\gginl\api\domains\repository\BaseRepository.class
 org\tat\gginl\api\domains\ResourceItem.class
 org\tat\gginl\api\scheduler\OccupationSchedular.class
